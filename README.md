@@ -35,7 +35,7 @@ Mobile apps based on this project:
   <img src="/screenshots/Screenshot5.png" width="400"/>
 </p>
 
-## Prerequires/SDK
+## Prerequisites/SDK
 
 - Android Studio 1.5+
 - minSdkVersion 16
