@@ -13,3 +13,4 @@ app/build
 tmp
 .idea
 .navigation
+.navigation/
