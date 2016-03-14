@@ -42,7 +42,5 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.4'
     compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     compile 'com.android.support:cardview-v7:21.0.3'
-    compile 'com.jakewharton:disklrucache:2.0.2'
-    compile(name: 'tileview', ext: 'aar')
     compile 'com.google.android.gms:play-services:7.3.0'
 }

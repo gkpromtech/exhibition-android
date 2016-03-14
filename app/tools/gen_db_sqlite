@@ -5,7 +5,7 @@ set -eu
 rm -rf tmp
 mkdir -p tmp
 
-host=127.0.0.1
+host=portal.rusarmyexpo.ru
 if [ -n "${1+x}" ]
 then
   host=$1
