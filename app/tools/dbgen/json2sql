@@ -1,0 +1,7 @@
+#!/bin/bash
+
+p=`cd $(dirname $0); pwd`
+
+java -jar $p/json2sql.jar "$@"
+
+echo

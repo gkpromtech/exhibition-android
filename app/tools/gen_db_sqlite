@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -eu
+
+rm -rf tmp
+mkdir -p tmp
+
+host=127.0.0.1
+if [ -n "${1+x}" ]
+then
+  host=$1
+fi
+
+wget -qO- http://$host:8888/changes/getUpdates?revision=0 >tmp/db.json || (echo "ERROR $?!" >&2; exit 1)
+dbgen/dump_model >tmp/model.sql
+
+for l in 0 1
+do
+  echo "Generating db lang=$([ $l = 0 ] && echo ru || echo en)"
+  mkdir -p tmp/db/$l
+  dbgen/json2sql tmp/db.json $l tmp/db/$l/db.sql
+  rm -f ../src/main/assets/db/exhibition_$l ../src/main/assets/db/revision
+
+  (
+      cat << EOF
+PRAGMA synchronous = OFF;
+PRAGMA journal_mode = MEMORY;
+PRAGMA foreign_keys = OFF;
+BEGIN TRANSACTION;
+EOF
+      cat tmp/model.sql
+      cat tmp/db/$l/db.sql
+      cat << EOF
+CREATE VIEW IF NOT EXISTS schema_search AS
+SELECT 'places' entity, id, name FROM places
+UNION
+SELECT 'events' entity, id, header FROM events
+UNION
+SELECT 'organizations' entity, id, shortName FROM organizations;
+EOF
+      echo "COMMIT;"
+  ) | sqlite3 ../src/main/assets/db/exhibition_$l
+  # | grep -v memory
+  cp -f tmp/db/$l/revision ../src/main/assets/db/revision
+#  ) | tee tmp/db/$l/all.sql | sqlite3 tmp/db/$l/main | grep -v memory
+done
+
+rm -rf tmp

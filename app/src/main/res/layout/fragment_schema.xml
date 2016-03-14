@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="RtlHardcoded"
+    android:background="@color/Exhibition.DarkGray">
+
+    <com.qozix.tileview.TileView
+        android:id="@+id/tileView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonOrganizations"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:id="@+id/buttonZoomIn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_black_plus"
+            android:background="@drawable/oval_button"
+            android:contentDescription="@string/empty"/>
+
+        <ImageButton
+            android:id="@+id/buttonZoomOut"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_black_minus"
+            android:background="@drawable/oval_button"
+            android:contentDescription="@string/empty"/>
+
+        <ImageButton
+            android:id="@+id/buttonOverview"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_black_map"
+            android:contentDescription="@string/empty"
+            android:scaleType="fitCenter"
+            android:onClick="onOverviewClicked"
+            android:cropToPadding="false"
+            android:background="@drawable/oval_button"
+            android:padding="6dp"
+            android:layout_marginTop="@dimen/item_spacing_small" />
+
+        <ImageButton
+            android:id="@+id/buttonPosition"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_target"
+            android:contentDescription="@string/empty"
+            android:scaleType="fitCenter"
+            android:onClick="onPositionClicked"
+            android:cropToPadding="false"
+            android:background="@drawable/oval_button"
+            android:padding="5dp"
+            android:layout_marginTop="@dimen/item_spacing_small" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/title_section_organizations"
+        android:id="@+id/buttonOrganizations"
+        android:layout_alignParentBottom="true"
+        android:onClick="onOrganizationsClicked"
+        android:textColor="@color/Exhibition.White"
+        android:background="@drawable/primary_button_selector"
+        android:drawableRight="@drawable/ic_white_arrow_right" />
+
+</RelativeLayout>

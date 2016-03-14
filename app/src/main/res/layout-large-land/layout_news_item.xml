@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/item_spacing_large"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/Exhibition.White"
+            android:textSize="14sp"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:minWidth="64dp"
+            android:paddingLeft="@dimen/item_spacing_large"
+            android:paddingRight="@dimen/item_spacing_large"
+            android:background="@color/Exhibition.DarkGray"/>
+
+        <TextView
+            android:id="@+id/textPlaceCorner"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/header_bottom_left_gray"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/Exhibition.White" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:layout_marginTop="@dimen/item_spacing"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageEnclosure"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="@dimen/item_spacing_large"
+            android:contentDescription="@string/title_section_news"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/item_spacing_small"
+            android:layout_marginBottom="@dimen/item_spacing_small"
+            android:layout_marginLeft="@dimen/item_spacing"
+            android:layout_marginRight="@dimen/item_spacing_small"
+            android:textSize="20sp"
+            android:textColor="@color/Exhibition.Black" />
+    </LinearLayout>
+
+</LinearLayout>

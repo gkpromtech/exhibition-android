@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/Exhibition.ActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/Exhibition.ActionBar</item>
+        <item name="android:windowBackground">@color/Exhibition.White</item>
+        <item name="colorPrimaryDark">@color/Exhibition.Primary</item>
+        <item name="colorPrimary">@color/Exhibition.Primary</item>
+        <item name="colorControlHighlight">@color/Exhibition.TransparentRed</item>
+
+        <item name="android:activatedBackgroundIndicator">@drawable/main_menu_selector</item>
+        <item name="android:textViewStyle">@style/Exhibition.TextViewStyle</item>
+        <item name="android:buttonStyle">@style/Exhibition.ButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/Exhibition.ImageButtonStyle</item>
+
+        <item name="android:textAppearanceSmall">@style/Exhibition.Text.Small</item>
+        <item name="android:textAppearanceMedium">@style/Exhibition.Text.Medium</item>
+        <item name="android:textAppearanceLarge">@style/Exhibition.Text.Large</item>
+        <item name="android:listViewStyle">@style/Exhibition.ListView</item>
+    </style>
+
+    <style name="Exhibition.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="titleTextStyle">@style/Exhibition.ActionBar.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/Exhibition.ActionBar.SubTitleText</item>
+        <item name="colorControlNormal">@color/Exhibition.White</item>
+    </style>
+
+    <style name="Exhibition.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/Exhibition.White</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Exhibition.ActionBar.SubTitleText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/Exhibition.White</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Exhibition.TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <!-- Стиль для кнопок-->
+    <style name="Exhibition.ButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="Exhibition.ImageButtonStyle" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/button_selector</item>
+    </style>
+
+
+    <!--Стили для текста -->
+    <style name="Exhibition.Text.Small" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Exhibition.Text.Medium" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="Exhibition.Text.Large" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <style name="ButtonBarButton" />
+
+    <style name="PortraitSplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_fit</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LandscapeSplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_landscape_fit</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Exhibition.ListView" parent="@android:style/Widget.ListView">
+        <item name="android:background">@color/Exhibition.Background</item>
+        <item name="android:divider">@color/Exhibition.LightGray</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:drawSelectorOnTop">false</item>
+    </style>
+
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:ignore="RtlHardcoded">
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="@dimen/item_spacing"
+        android:contentDescription="@string/empty"
+        android:scaleType="fitCenter" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_marginTop="@dimen/item_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/textPlaceCorner"
+                android:layout_width="30dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/header_bottom_right_gray"
+                android:gravity="center"
+                android:padding="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Exhibition.White" />
+
+            <TextView
+                android:id="@+id/textPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/Exhibition.DarkGray"
+                android:gravity="center"
+                android:minWidth="64dp"
+                android:padding="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Exhibition.White" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

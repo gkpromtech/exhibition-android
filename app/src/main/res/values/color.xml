@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text">#101010</color>
+
+    <color name="Exhibition.Primary">#ed1c24</color>
+    <color name="Exhibition.Secondary">#6d6f71</color>
+    <color name="Exhibition.Background">@android:color/white</color>
+
+    <color name="Exhibition.White">@android:color/white</color>
+    <color name="Exhibition.Black">#101010</color>
+
+    <color name="Exhibition.GrayGradientStart">#6a6c6e</color>
+    <color name="Exhibition.GrayGradientEnd">#5a5b5d</color>
+    <color name="Exhibition.LightGray">#e1e1e1</color>
+    <color name="Exhibition.DarkGray">#aaaaaa</color>
+
+    <color name="Exhibition.TransparentRed">#b3ed1c24</color>
+    <color name="Exhibition.TransparentBlue">#b36d6f71</color>
+    <color name="Exhibition.TransparentWhite">#b3ffffff</color>
+    <color name="Exhibition.TransparentDarkGray">#b3aaaaaa</color>
+    <color name="Exhibition.TransparentLightGray">#b3e1e1e1</color>
+    <color name="Exhibition.TransparentBlack">#b3101010</color>
+
+    <color name="ListViewOddRow">#f1f1f2</color>
+    <color name="black_overlay">#66000000</color>
+
+</resources>

@@ -1,0 +1,198 @@
+#!/bin/bash
+
+if [ ! -e "db.conf" ]
+then
+  echo "db.conf file is missing" >&2
+  exit 1
+fi
+
+. db.conf
+
+className() {
+  sed 's/_tr$//;s/s$//;s/^./\U&/g;s/_\([a-z]\)\([a-z]\+\)/\U\1\L\2/g' <<< "$1"
+}
+
+nl='
+'
+
+tables=(
+business_sections
+business_sections_persons
+business_events
+business_events_tr
+person_business_events
+events
+events_businesssections
+events_organizations
+events_persons
+events_places
+exhibitions
+groups
+groups_places
+media
+meetings
+meeting_requests
+meetings_persons
+objects
+objects_media
+organizations
+persons
+places
+places_organizations
+sections
+sections_places
+tags
+tags_objects
+online
+maps
+maps_points
+maps_bounds
+)
+
+mysqldump -u$user -p$pass $dbname --skip-triggers --compact --skip-set-charset -d |\
+(
+declare -A classes
+declare -A classNames
+
+while read line
+do
+  case "$line" in
+  "CREATE TABLE"*)
+    table=${line%\`*}; table=${table##*\`}
+    table1=${table%_tr}
+    [[ " ${tables[@]} " =~ " ${table%_tr} " ]] || continue
+    class=$(className $table)
+    classNames[$class]=
+    declare -A fieldsData
+    fields=()
+    active=1
+    [[ ! $table =~ _tr$ ]] || tr=1
+    continue
+    ;;
+
+  ")"*)
+    [ -n "$active" ] || continue
+
+    data=
+    if [[ -n "$tr" ]]
+    then
+      classes[$class.tr]=1
+      data+="$nl    /* translatable fields */ $nl"
+    else
+      classes[$class.table]=$table
+    fi
+    for field in "${fields[@]}"
+    do
+      data+="    ${fieldsData[$field]},$nl"
+    done
+    classes[$class.fields]+="${data}"
+    classes[$class.hasDate]+=$hasDate
+    classes[$class.hasPK]+=$hasPK
+    classes[$class.hasFK]+=$hasFK
+    classes[$class.hasDefault]+=$hasDefault
+    classes[$class.hasNull]+=$hasNull
+    classes[$class.tr]+=$tr
+
+    unset active
+    unset fieldsData
+    unset fields
+    unset hasDate
+    unset hasPK
+    unset hasFK
+    unset hasDefault
+    unset hasNull
+    unset fn
+    unset tr
+    continue
+    ;;
+
+  \`*\`*)  # field
+    [ -n "$active" ] || continue
+    d=${line//(*)}
+    d=${d//[\`,]}
+    d=${d/varchar/text}
+    d=($d)
+
+    field=${d[0]}
+    [ $field != languageid ] || continue # id defined in Entity
+    [ $field != id -o -z "$tr" ] || continue # id defined in Entity
+
+    type="$field ${d[1]}"
+
+    if [ "${d[2]}" = "DEFAULT" ]
+    then
+      hasDefault=1
+      type+=" DEFAULT ${d[3]}"
+    fi
+
+    if [ "${d[2]}" = "NULL" ]
+    then
+      hasNull=1
+      type+=" DEFAULT NULL"
+    fi
+
+    fieldsData[$field]="$type"
+    fields+=($field)
+    ;;
+
+  "PRIMARY KEY"*)
+    [ -n "$active" ] || continue
+    field=${line%\`*}
+    field=${field##*\`}
+    fieldsData[$field]+=" PRIMARY KEY"
+    hasPK=1
+    ;;
+
+  *"FOREIGN KEY"*)
+    [ -n "$active" ] || continue
+    #  CONSTRAINT `business_sections_ibfk_1` FOREIGN KEY (`id`) REFERENCES `objects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    d=(${line//[(),\`]})
+    field=${d[4]}
+    refs=${d[6]}
+    rfield=${d[7]}
+    if [ -n "$tr" -a $refs == $table1 -a $rfield == id ]
+    then
+      unset fieldsData[$field]
+      f=" ${fields[@]} "
+      fields=(${f/ $field / })
+    else
+      ondel=${d[9]}
+      ondelete=${d[10]}
+      onup=${d[12]}
+      onupdate=${d[13]}
+      if [ $onup = ON ]
+      then
+        ondelete+=" ${d[11]}"
+        onup=${d[13]}
+        onupdate=${d[14]}
+        if [ $onupdate = SET ]
+        then
+          onupdate+=" ${d[15]}"
+        fi
+      fi
+      test $ondel = "DELETE" || (echo "unexpected $ondel, DELETE expected: [$line]"; false)
+      test $onup = "UPDATE" || (echo "unexpected $onup, UPDATE expected: [$line]"; false)
+      fieldsData[$field]+=" REFERENCES $refs($rfield) ON DELETE $ondelete ON UPDATE $onupdate"
+      if [ "$field" = "id" ]
+      then
+        fieldsData[$field]+=" PRIMARY KEY"
+      fi
+      hasFK=1
+    fi
+    ;;
+  esac
+done
+
+for class in ${!classNames[@]}
+do
+  cat << CLASS
+
+CREATE TABLE ${classes[$class.table]} (
+${classes[$class.fields]%,$nl}
+);
+
+CLASS
+
+done
+
+)

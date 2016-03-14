@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.gkpromtech.exhibition" >
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.GPS"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.WIFI"
+        android:required="false" />
+
+    <application
+        android:name=".ExhibitionApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="ru.gkpromtech.exhibition.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/PortraitSplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.events.EventsActivity"
+            android:label="@string/title_section_now" >
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.news.NewsActivity"
+            android:label="@string/title_section_news" >
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.media.MediaActivity"
+            android:label="@string/title_section_media" >
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.news.NewsDetailsActivity"
+            android:parentActivityName="ru.gkpromtech.exhibition.news.NewsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.gkpromtech.exhibition.news.NewsActivity" />
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.about.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.events.EventDetailsActivity"
+            android:label="@string/title_activity_event"
+            android:parentActivityName="ru.gkpromtech.exhibition.events.EventsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.gkpromtech.exhibition.events.EventsActivity" />
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.media.FullImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_full_image"
+            android:parentActivityName="ru.gkpromtech.exhibition.events.EventDetailsActivity"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.gkpromtech.exhibition.events.EventDetailsActivity" />
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.media.ImagesGridActivity"
+            android:parentActivityName="ru.gkpromtech.exhibition.events.EventDetailsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.gkpromtech.exhibition.events.EventDetailsActivity" />
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.organizations.OrganizationsActivity"
+            android:label="@string/title_section_organizations" />
+        <activity
+            android:name="ru.gkpromtech.exhibition.media.VideoPlayerActivity"
+            android:label="@string/media_title_online" >
+        </activity>
+        <activity android:name="ru.gkpromtech.exhibition.organizations.OrganizationPlaceActivity" />
+        <activity android:name="ru.gkpromtech.exhibition.exhibitions.ExhibitionActivity" />
+        <activity
+            android:name="ru.gkpromtech.exhibition.catalog.CatalogActivity"
+            android:label="@string/title_section_catalogue" >
+        </activity>
+        <activity
+            android:name="ru.gkpromtech.exhibition.catalog.SectionContentActivity"
+            android:label="@string/title_section_catalogue"
+            android:parentActivityName="ru.gkpromtech.exhibition.catalog.CatalogActivity" >
+        </activity>
+        <activity android:name="ru.gkpromtech.exhibition.persons.PersonDetailsActivity" />
+
+
+        <!-- Add the following meta-data for devices running Google Play service. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Optionally, register AnalyticsReceiver and AnalyticsService to support background
+             dispatching on non-Google Play devices -->
+        <receiver android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false"/>
+
+        <!-- Optionally, register CampaignTrackingReceiver and CampaignTrackingService to enable
+             installation campaign reporting -->
+        <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+    </application>
+
+</manifest>

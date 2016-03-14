@@ -1,0 +1,2 @@
+    public final static int TYPE_PUBLIC = 0;
+    public final static int TYPE_DEMO = 1;

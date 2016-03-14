@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:ignore="RtlHardcoded"
+    tools:context="ru.gkpromtech.exhibition.about.OrganizationDetailsFragment">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="@dimen/item_spacing"
+        android:textColor="#000"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/item_spacing"
+        android:layout_marginTop="@dimen/item_spacing_small"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/item_spacing"
+        android:layout_marginBottom="@dimen/item_spacing_xlarge"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageLogo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:contentDescription="@string/about_organizers"
+                android:scaleType="fitCenter"/>
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:maxLines="5"
+                android:singleLine="false"
+                android:layout_marginLeft="@dimen/item_spacing" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_spacing"
+            android:layout_weight="0"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_home"
+            android:gravity="center_vertical"
+            android:onClick="onAddressClicked"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawablePadding="@dimen/item_spacing"
+            android:textColor="#00629f" />
+
+        <TextView
+            android:id="@+id/textPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_spacing"
+            android:layout_weight="0"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_phone"
+            android:gravity="center_vertical"
+            android:onClick="onPhoneClicked"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawablePadding="@dimen/item_spacing"
+            android:textColor="#00629f" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_spacing"
+            android:layout_weight="0"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_email"
+            android:gravity="center_vertical"
+            android:onClick="onEmailClicked"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawablePadding="@dimen/item_spacing"
+            android:textColor="#00629f" />
+
+        <TextView
+            android:id="@+id/textSite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_spacing"
+            android:layout_weight="0"
+            android:clickable="true"
+            android:drawableLeft="@drawable/ic_globe"
+            android:gravity="center_vertical"
+            android:onClick="onSiteClicked"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawablePadding="@dimen/item_spacing"
+            android:textColor="#00629f" />
+
+    </LinearLayout>
+</LinearLayout>

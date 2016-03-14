@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:id="@+id/spinnerText"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:textColor="@color/Exhibition.White"
+    android:paddingRight="@dimen/item_spacing_small"
+    android:paddingLeft="@dimen/item_spacing_small"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>

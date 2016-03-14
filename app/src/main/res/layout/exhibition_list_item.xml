@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="RtlHardcoded">
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:id="@+id/imagePreview"
+            android:contentDescription="@string/empty"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_vertical" />
+
+        <ru.gkpromtech.exhibition.utils.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:id="@+id/imageShowOnSchema"
+            android:clickable="true"
+            android:src="@drawable/ic_location"
+            android:scaleType="centerInside"
+            android:layout_alignBottom="@id/imagePreview"
+            android:layout_alignRight="@id/imagePreview"
+            android:alpha="0.6"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/item_spacing"
+        android:paddingRight="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textTitle"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/textDescription"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/textPlaceCorner"
+                android:layout_width="30dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/header_bottom_right_gray"
+                android:gravity="center"
+                android:padding="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Exhibition.White" />
+
+            <TextView
+                android:id="@+id/textPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/Exhibition.DarkGray"
+                android:gravity="center"
+                android:minWidth="64dp"
+                android:padding="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/Exhibition.White" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

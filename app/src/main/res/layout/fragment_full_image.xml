@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Exhibition.Background"
+    tools:context="ru.gkpromtech.exhibition.media.FullImageActivity"
+    android:foregroundGravity="center">
+
+    <ru.gkpromtech.exhibition.media.TouchImageView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:background="@color/Exhibition.TransparentBlack"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"/>
+
+    <ImageButton
+        android:id="@+id/imagePlayButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_video"
+        android:layout_gravity="center" />
+
+</FrameLayout>

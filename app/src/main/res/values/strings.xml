@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Exhibition Online</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading…</string>
+    <string name="empty">No data</string>
+    <string name="error_loading_data">Error loading data.</string>
+
+    <string name="title_section_now">Schedule</string>
+    <string name="title_section_map">Forum map</string>
+    <string name="title_section_organizations">Exhibitors</string>
+    <string name="title_section_catalogue">Sections</string>
+    <string name="title_section_news">News</string>
+    <string name="title_section_media">Media</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="title_activity_about">About</string>
+    <string name="about_goal">Objective: To create the necessary and sufficient conditions to perform the search of forward technical, technological and other solutions for their subsequent implementation in the production of AMSE and creating a positive image of the Armed Forces of the Russian Federation and the promotion of military service.</string>
+    <string name="about_organizers">Organizers</string>
+    <string name="about_sponsors">Sponsors</string>
+    <string name="about_send_feedback">Send feedback</string>
+    <string name="about_contact_developers">Contact developers</string>
+    <string name="error_starting_gmaps">Error starting Google Maps</string>
+    <string name="title_activity_event">Event</string>
+    <string name="title_activity_events">Schedule</string>
+
+    <string-array name="organization_status">
+        <item>Organizer</item>
+        <item>Co-organizer</item>
+        <item>General partner</item>
+        <item>Official partner</item>
+        <item>Official translator</item>
+        <item>General sponsor</item>
+        <item>Sponsor</item>
+        <item>Participant</item>
+    </string-array>
+
+    <string name="all_uppercase">ALL</string>
+    <string name="event_status_business">SHOW</string>
+    <string name="event_status_my">FAVORITES</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="title_activity_full_image">Images</string>
+    <string name="title_tags">Tags</string>
+    <string name="insert_event_ok">Event bas been added to calendar</string>
+    <string name="never_insert_event">Never add</string>
+    <string name="select_calendar">Select the calendar</string>
+    <string name="calendars_not_found">No calendars found</string>
+    <string name="delete_event_ok">The event has been removed from calendar</string>
+
+    <string name="media_tab1">ALL</string>
+    <string name="media_tab2">ORGANIZATIONS</string>
+    <string name="media_tab3">MY PHOTO</string>
+    <string name="media_title_online">Online</string>
+    <string name="media_title_video">Video</string>
+    <string name="media_title_old_images">Before</string>
+    <string name="media_title_afterparty_images">After party</string>
+
+    <string name="representatives">Representatives</string>
+    <string name="exhibition_samples">Exhibition samples</string>
+
+    <string name="stand">Stand</string>
+    <string name="stands_">STANDS</string>
+    <string name="no_organizations_on_place">No organizations found</string>
+
+    <string name="add_to_contacts">Add to contacts</string>
+    <string name="request_meeting">Request meeting</string>
+
+    <string name="please_wait">Please wait</string>
+    <string name="loading_materials_info">Loading materials info…</string>
+    <string name="download_materials_to_device">Download materials (%s) to the device?</string>
+    <string name="materials">Materials</string>
+
+    <string name="exit_help_toast">Please click BACK again to exit</string>
+
+    <string name="exhibitions">Exhibitions</string>
+    <string name="phone">Phone</string>
+    <string name="email" translatable="false">E-mail</string>
+    <string name="www" translatable="false">WWW</string>
+    <string name="organization">Participant</string>
+    <string name="send">Send</string>
+
+    <string name="media_saved">File saved</string>
+    <string name="media_favorites">My photos</string>
+    <string name="stand_not_found">Stand is not found.</string>
+    <string name="delete">Delete</string>
+    <string name="photo_saved">Photo saved</string>
+    <string name="photo_delete_ok">Photo deleted</string>
+    <string name="photo_delete_error">Error deleting file</string>
+
+    <string name="section_uppercase">SECTION</string>
+    <string name="other_business_events">Other activities of scientific and business program</string>
+
+    <string name="full_name">Full name</string>
+    <string name="organization1">Organization</string>
+    <string name="position">Position</string>
+    <string name="other">Other</string>
+
+    <string name="updating_data">Updating data…</string>
+    <string name="error_updating_data">Error downloading update data: failed to connect to the server.</string>
+    <string name="save_materials">Save documents</string>
+    <string name="filter">Filter</string>
+    <string name="cannot_determine_location">Can\'t find location</string>
+    <string name="description">Details</string>
+    <string name="address">Address</string>
+    <string name="contacts">Contacts</string>
+    <array name="organizations_filter">
+        <item>All</item>
+        <item>Stands</item>
+    </array>
+
+</resources>

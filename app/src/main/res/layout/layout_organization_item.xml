@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded"
+    tools:context="ru.gkpromtech.exhibition.about.OrganizationsFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/Exhibition.TransparentDarkGray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left">
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom|right"
+            android:background="@color/Exhibition.DarkGray"
+            android:gravity="center"
+            android:minWidth="128dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="@dimen/item_spacing_xlarge"
+            android:paddingRight="@dimen/item_spacing_xlarge"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/Exhibition.White" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/header_bottom_left_gray"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/Exhibition.White" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_spacing_large"
+        android:layout_marginTop="@dimen/item_spacing_large"
+        android:paddingLeft="@dimen/item_spacing_xlarge"
+        android:paddingRight="@dimen/item_spacing"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/about_organizers"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:maxLines="5"
+            android:singleLine="false"
+            android:textColor="@color/Exhibition.Black"
+            android:layout_marginLeft="@dimen/item_spacing"/>
+    </LinearLayout>
+
+</LinearLayout>

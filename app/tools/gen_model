@@ -1,0 +1,235 @@
+#!/bin/bash
+
+if [ ! -e "db.conf" ]
+then
+  echo "db.conf file is missing" >&2
+  exit 1
+fi
+
+. db.conf
+
+className() {
+  sed 's/_tr$//;s/s$//;s/^./\U&/g;s/_\([a-z]\)\([a-z]\+\)/\U\1\L\2/g' <<< "$1"
+}
+
+nl='
+'
+
+tables=(
+business_sections
+business_sections_persons
+business_events
+business_events_tr
+person_business_events
+events
+events_businesssections
+events_organizations
+events_persons
+events_places
+exhibitions
+groups
+groups_places
+media
+meetings
+meeting_requests
+meetings_persons
+objects
+objects_media
+organizations
+persons
+places
+places_organizations
+sections
+sections_places
+tags
+tags_objects
+online
+maps
+maps_points
+maps_bounds
+)
+
+mysqldump -u$user -p$pass $dbname --skip-triggers --compact --skip-set-charset -d |\
+(
+declare -A classes
+declare -A classNames
+
+while read line
+do
+  case "$line" in
+  "CREATE TABLE"*)
+    table=${line%\`*}; table=${table##*\`}
+    [[ " ${tables[@]} " =~ " ${table%_tr} " ]] || continue
+    class=$(className $table)
+    classNames[$class]=
+    declare -A fieldsData
+    fields=()
+    active=1
+    [[ ! $table =~ _tr$ ]] || tr=1
+    continue
+    ;;
+
+  ")"*)
+    [ -n "$active" ] || continue
+
+    data=
+    if [[ -n "$tr" ]]
+    then
+      classes[$class.tr]=1
+      data+="$nl    // translatable fields$nl"
+    else
+      classes[$class.table]=$table
+    fi
+    for field in "${fields[@]}"
+    do
+      data+="    public ${fieldsData[$field]} $field;$nl"
+    done
+    classes[$class.fields]+="${data}"
+    classes[$class.hasDate]+=$hasDate
+    classes[$class.hasPK]+=$hasPK
+    classes[$class.hasFK]+=$hasFK
+    classes[$class.hasDefault]+=$hasDefault
+    classes[$class.hasNull]+=$hasNull
+    classes[$class.tr]+=$tr
+
+    unset active
+    unset fieldsData
+    unset fields
+    unset hasDate
+    unset hasPK
+    unset hasFK
+    unset hasDefault
+    unset hasNull
+    unset fn
+    unset tr
+    continue
+    ;;
+
+  \`*\`*)  # field
+    [ -n "$active" ] || continue
+    d=${line//(*)}
+    d=${d//[\`,]}
+    d=${d// NOT NULL}
+    d=${d// DEFAULT NULL/ NULL}
+    d=($d)
+
+    field=${d[0]}
+    [ $field != id -a $field != languageid ] || continue # id defined in Entity
+
+    type=${d[1]}
+    type=${type//varchar/String}
+    type=${type//text/String}
+    type=${type//timestamp/Date}
+    type=${type//datetime/Date}
+    type=${type//date/Date}
+    type=${type//time/Date}
+
+    case "$type" in
+      int) type=Integer;;
+      short) type=Short;;
+      long) type=Long;;
+      double) type=Double;;
+      float) type=Float;;
+      boolean) type=Boolean;;
+    esac
+
+    [ "$type" != "Date" ] || hasDate=1
+
+    if [ "${d[2]}" = "DEFAULT" ]
+    then
+      hasDefault=1
+      type="@Default(\"${d[3]//\'}\") $type"
+    fi
+
+    if [ "${d[2]}" = "NULL" ]
+    then
+      hasNull=1
+      type="@Null $type"
+    fi
+
+    [ -z "$tr" ] || type="@Translatable $type"
+
+    fieldsData[$field]="$type"
+    fields+=($field)
+    ;;
+
+  "PRIMARY KEY"*)
+    [ -n "$active" ] || continue
+    field=${line%\`*}
+    field=${field##*\`}
+    [ $field != id ] || continue
+    fieldsData[$field]="@PK ${fieldsData[$field]}"
+    hasPK=1
+    ;;
+
+  *"FOREIGN KEY"*)
+    [ -n "$active" ] || continue
+    #  CONSTRAINT `business_sections_ibfk_1` FOREIGN KEY (`id`) REFERENCES `objects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    d=(${line//[(),\`]})
+    field=${d[4]}
+    [ $field != id ] || continue
+    refs=$(className ${d[6]})
+    rfield=${d[7]}
+    if [ -n "$tr" -a $refs == $class -a $rfield == id ]
+    then
+      unset fieldsData[$field]
+      f=" ${fields[@]} "
+      fields=(${f/ $field /})
+      classes[$class.trid]=$field
+      continue
+    fi
+    ondel=${d[9]}
+    ondelete=${d[10]}
+    onup=${d[12]}
+    onupdate=${d[13]}
+    if [ $onup = ON ]
+    then
+      ondelete+=" ${d[11]}"
+      onup=${d[13]}
+      onupdate=${d[14]}
+    fi
+    test $ondel = "DELETE" || (echo "unexpected $ondel, DELETE expected: [$line]"; false)
+    test $onup = "UPDATE" || (echo "unexpected $onup, UPDATE expected: [$line]"; false)
+    fieldsData[$field]="@FK(entity=$refs.class, field=\"$rfield\", onDelete=\"$ondelete\", onUpdate=\"$onupdate\") ${fieldsData[$field]}"
+    hasFK=1
+    ;;
+  esac
+done
+
+for class in ${!classNames[@]}
+do
+  [ -z "${classes[$class.tr]}" ] && tr= || tr=", tr=true"
+  [ -z "${classes[$class.trid]}" ] && trid= || trid=", trid=\"${classes[$class.trid]}\""
+    (
+    cat << HEAD
+/* THIS FILE IS MACHINE GENERATED. DO NOT CHANGE IT BY HAND.
+   TO UPDATE THIS FILE START ./gen_model FROM THE "app/tools" DIR */
+
+package ru.gkpromtech.$dbname.model;
+
+HEAD
+
+    [ -z "${classes[$class.hasDate]}" ] || echo "import java.util.Date;$nl"
+    [ -z "${classes[$class.hasPK]}" ] || echo "import ru.gkpromtech.$dbname.model.annotation.PK;"
+    [ -z "${classes[$class.hasFK]}" ] || echo "import ru.gkpromtech.$dbname.model.annotation.FK;"
+    [ -z "${classes[$class.hasNull]}" ] || echo "import ru.gkpromtech.$dbname.model.annotation.Null;"
+    [ -z "${classes[$class.hasDefault]}" ] || echo "import ru.gkpromtech.$dbname.model.annotation.Default;"
+    [ -z "${classes[$class.tr]}" ] || echo "import ru.gkpromtech.$dbname.model.annotation.Translatable;"
+
+    echo "import ru.gkpromtech.$dbname.model.annotation.TableRef;"
+
+    class_add=
+    [ ! -e model_add/$class ] || class_add="$(<model_add/$class)$nl$nl"
+    cat << CLASS
+
+@TableRef(name="${classes[$class.table]}"$tr$trid)
+public class $class extends Entity {
+$class_add\
+${classes[$class.fields]}\
+}
+CLASS
+
+  ) > ../src/main/java/ru/gkpromtech/$dbname/model/$class.java
+done
+
+)

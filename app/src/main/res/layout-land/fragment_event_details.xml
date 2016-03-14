@@ -1,0 +1,179 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <ImageView
+            android:id="@+id/imageEvent"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:src="@drawable/empty_image"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="10dp"/>
+
+        <it.sephiroth.android.library.widget.HListView
+            android:id="@+id/hListView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/item_spacing"
+            android:paddingLeft="@dimen/item_spacing">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout3">
+
+                    <TextView
+                        android:id="@+id/textDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        style="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/Exhibition.White"
+                        android:gravity="center_vertical"
+                        android:background="@color/Exhibition.DarkGray"
+                        android:paddingLeft="@dimen/item_spacing"
+                        android:text="16.06.2015 / "/>
+
+                    <TextView
+                        android:id="@+id/textTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        style="?android:attr/textAppearanceMedium"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/Exhibition.White"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:background="@color/Exhibition.DarkGray"
+                        android:paddingRight="@dimen/item_spacing"
+                        android:text="10:00"/>
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="24dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/header_bottom_left_gray"
+                        android:paddingLeft="@dimen/item_spacing"
+                        android:paddingRight="@dimen/item_spacing" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="14dp"
+                    android:layout_below="@+id/linearLayout3"
+                    android:id="@+id/linearLayout4">
+
+                    <TextView
+                        android:id="@+id/text_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Название "
+                        style="?android:attr/textAppearanceLarge"
+                        android:clickable="false"
+                        android:textColor="@color/text"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/imagePlace"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_location"
+                            android:background="@android:color/transparent"
+                            android:layout_weight="0"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Place"
+                            android:id="@+id/textPlace"
+                            style="?android:attr/textAppearanceMedium"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="@dimen/item_spacing"
+                            android:paddingRight="@dimen/item_spacing"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <ImageButton
+                    android:id="@+id/imageFlag"
+                    android:layout_width="32dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/favorite_selector"
+                    android:clickable="true"
+                    android:layout_gravity="right"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/linearLayout4"
+                    android:layout_alignEnd="@+id/linearLayout4" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textEvent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/item_spacing"
+                style="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/item_spacing_small"
+                android:textColor="@color/text"
+                android:text="Description"
+                android:paddingBottom="@dimen/item_spacing"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/item_spacing_small"
+                android:layout_marginBottom="@dimen/item_spacing_small"/>
+
+            <TextView
+                android:id="@+id/tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="?android:attr/textAppearanceSmall"
+                android:text="Tag"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

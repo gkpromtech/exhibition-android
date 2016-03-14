@@ -1,0 +1,128 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ru.gkpromtech.exhibition.about.AboutFragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/item_spacing_large"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/item_spacing_large"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageLogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/item_spacing"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/about_goal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/text" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Exhibition.DarkGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/item_spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_spacing_small"
+                android:layout_marginBottom="@dimen/item_spacing_small"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textOrganizers"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_size_small"
+                    android:layout_marginTop="@dimen/item_spacing_small"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/item_spacing_small"
+                    android:gravity="center_vertical"
+                    android:onClick="onOrganizersClicked"
+                    android:text="@string/about_organizers"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/text" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/Exhibition.LightGray" />
+
+                <TextView
+                    android:id="@+id/textSponsors"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_size_small"
+                    android:layout_marginTop="@dimen/item_spacing_small"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_star"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/item_spacing_small"
+                    android:gravity="center_vertical"
+                    android:onClick="onSponsorsClicked"
+                    android:text="@string/about_sponsors"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/text" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/Exhibition.LightGray" />
+
+                <TextView
+                    android:id="@+id/textContactDevelopers"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_size_small"
+                    android:layout_marginTop="@dimen/item_spacing_small"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:drawablePadding="@dimen/item_spacing_small"
+                    android:gravity="center_vertical"
+                    android:onClick="onContactDevelopersClicked"
+                    android:text="@string/about_contact_developers"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/text" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Exhibition.DarkGray" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

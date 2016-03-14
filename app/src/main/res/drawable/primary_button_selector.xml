@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/Exhibition.Primary" android:state_pressed="true" />
+    <item android:state_activated="true">
+        <color android:color="@color/Exhibition.Primary"/>
+    </item>
+    <item android:drawable="@drawable/tab_background_primary"/>
+</selector>

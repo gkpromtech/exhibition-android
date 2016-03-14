@@ -1,0 +1,15 @@
+.gradle
+local.properties
+.DS_Store
+build
+app/build
+.hg
+.hgignore
+*.iml
+/app/*.iml
+/app/tools/db.conf
+/app/*.apk
+/app/manifest-merger-release-report.txt
+tmp
+.idea
+.navigation/

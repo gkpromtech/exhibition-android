@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Онлайн-выставка</string>
+
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="cancel">Отмена</string>
+    <string name="loading">Загрузка…</string>
+    <string name="empty">Нет данных</string>
+    <string name="error_loading_data">Ошибка загрузки данных.</string>
+
+    <string name="title_section_now">План мероприятия</string>
+    <string name="title_section_map">Карта форума</string>
+    <string name="title_section_organizations">Участники</string>
+    <string name="title_section_catalogue">Каталог</string>
+    <string name="title_section_news">Новости</string>
+    <string name="title_section_media">Фото и видео</string>
+
+    <string name="title_activity_about">О мероприятии</string>
+    <string name="about_goal">Цель: создание необходимых и достаточных условий для проведения поиска передовых (перспективных) технических, технологических и других решений для их последующего внедрения при производстве ВВСТ, а также формирования положительного имиджа Вооруженных Сил Российской Федерации и популяризации военной службы.</string>
+    <string name="about_organizers">Организаторы</string>
+    <string name="about_sponsors">Спонсоры</string>
+    <string name="about_send_feedback">Оставить отзыв</string>
+    <string name="about_contact_developers">Связаться с разработчиками</string>
+    <string name="error_starting_gmaps">Ошибка запуска Google Maps</string>
+    <string name="title_activity_events">План мероприятий</string>
+    <string name="title_activity_event">Мероприятие</string>
+
+    <string-array name="organization_status">
+        <item>Организатор</item>
+        <item>Соорганизатор</item>
+        <item>Генеральный партнер</item>
+        <item>Официальный партнер</item>
+        <item>Официальный переводчик</item>
+        <item>Генеральный спонсор</item>
+        <item>Спонсор</item>
+        <item>Участник выставки</item>
+    </string-array>
+
+    <string name="all_uppercase">ВСЕ</string>
+    <string name="event_status_business">ПОКАЗ</string>
+    <string name="event_status_my">МОЙ ВЫБОР</string>
+    <string name="show_on_map">На карте</string>
+    <string name="title_activity_full_image">Просмотр</string>
+    <string name="title_tags">Теги</string>
+    <string name="insert_event_ok">Событие добавлено в календарь</string>
+    <string name="never_insert_event">Никогда</string>
+    <string name="select_calendar">Выберите календарь</string>
+    <string name="calendars_not_found">Не найдено календарей</string>
+    <string name="delete_event_ok">Событие удалено из календаря</string>
+
+    <string name="media_tab1">ВСЕ</string>
+    <string name="media_tab2">УЧАСТНИКИ</string>
+    <string name="media_tab3">МОИ ФОТО</string>
+    <string name="media_title_online">Прямой эфир</string>
+    <string name="media_title_video">Видео</string>
+    <string name="media_title_old_images">Подготовка к мероприятию</string>
+    <string name="media_title_afterparty_images">Завершение мероприятия</string>
+
+    <string name="representatives">Представители</string>
+    <string name="exhibition_samples">Выставочные образцы</string>
+    <string name="address">Адрес</string>
+    <string name="contacts">Контакты</string>
+
+    <string name="stand">Стенд</string>
+    <string name="stands_">СТЕНДЫ</string>
+    <string name="no_organizations_on_place">Не найдено участников.</string>
+    <string name="add_to_contacts">Добавить в контакты</string>
+
+    <string name="please_wait">Пожалуйста подождите</string>
+    <string name="loading_materials_info">Загрузка информации о материалах…</string>
+    <string name="download_materials_to_device">Загрузить материалы (%s) на устройство?</string>
+    <string name="materials">Материалы</string>
+
+    <string name="exit_help_toast">Нажмите снова для выхода</string>
+
+    <string name="media_saved">Файл сохранен</string>
+    <string name="media_favorites">Мои фото</string>
+    <string name="stand_not_found">Стенд не найден.</string>
+    <string name="delete">Удалить</string>
+    <string name="photo_saved">Фото сохранено</string>
+    <string name="photo_delete_ok">Фото удалено</string>
+    <string name="photo_delete_error">Ошибка удаления фото</string>
+
+    <string name="organization">Организация</string>
+    <string name="exhibitions">Экспонаты</string>
+
+    <string name="full_name">Фамилия Имя Отчество</string>
+    <string name="organization1">Организация</string>
+    <string name="position">Должность</string>
+    <string name="other">Прочие</string>
+
+    <string name="updating_data">Обновление данных…</string>
+    <string name="error_updating_data">Ошибка при загрузке обновлений данных: сбой подключения к серверу.</string>
+    <string name="save_materials">Сохранить материалы</string>
+    <string name="filter">Фильтр</string>
+    <string name="cannot_determine_location">Невозможно определить свое местоположение</string>
+    <string name="description">Информация</string>
+    <array name="organizations_filter">
+        <item>Все</item>
+        <item>Стенды</item>
+    </array>
+</resources>

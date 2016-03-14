@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:background="@color/Exhibition.Primary"/>
+        <TextView
+            android:id="@+id/textChannel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Channel"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/item_spacing"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_spacing"
+        android:id="@+id/videoLayout">
+
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/online_placeholder"/>
+        <ImageView
+            android:id="@+id/imagePlayButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_video"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textChannelDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/item_spacing"
+        android:layout_marginRight="@dimen/item_spacing"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+</LinearLayout>
