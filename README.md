@@ -1,3 +1,5 @@
+[Русский текст](https://github.com/gkpromtech/exhibition-android/wiki)
+
 # Online exhibition mobile app
 
 The mobile application for exhibitions.
