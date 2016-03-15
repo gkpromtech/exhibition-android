@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import ru.gkpromtech.exhibition.db.DbUpdater;
 import ru.gkpromtech.exhibition.events.EventsActivity;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 
 public class SplashActivity extends Activity {
@@ -32,7 +33,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 final long startTime = System.currentTimeMillis();
                 // initialize db
-                new DbUpdater(SplashActivity.this).updateDb(new DbUpdater.OnProgressListener() {
+                boolean ok = new DbUpdater(SplashActivity.this).updateDb(new DbUpdater.OnProgressListener() {
                     @Override
                     public void onUpdateProgress(final int progress) {
                         handler.post(new Runnable() {
@@ -50,10 +51,16 @@ public class SplashActivity extends Activity {
                             public void run() {
                                 Toast.makeText(SplashActivity.this, R.string.error_updating_data,
                                         Toast.LENGTH_LONG).show();
+                                AnalyticsManager.sendEvent(SplashActivity.this, R.string.server_category, R.string.action_faild);
                             }
                         });
                     }
                 });
+
+                if (ok == true) {
+                    AnalyticsManager.sendEvent(SplashActivity.this, R.string.server_category, R.string.action_ok,
+                            new DbUpdater(SplashActivity.this).getInstalledDbRevision());
+                }
 
                 long delay = 2000 - (System.currentTimeMillis() - startTime);
                 if (delay < 0)
@@ -72,5 +79,6 @@ public class SplashActivity extends Activity {
             }
         }).start();
 
+        AnalyticsManager.sendEvent(this, R.string.application_category, R.string.action_open);
     }
 }

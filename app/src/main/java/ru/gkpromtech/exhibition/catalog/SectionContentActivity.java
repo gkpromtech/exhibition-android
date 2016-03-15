@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.util.List;
 
 import ru.gkpromtech.exhibition.R;
@@ -26,6 +28,7 @@ import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.Organization;
 import ru.gkpromtech.exhibition.model.Place;
 import ru.gkpromtech.exhibition.organizations.OrganizationItem;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 import ru.gkpromtech.exhibition.utils.SharedData;
 
@@ -72,6 +75,20 @@ public class SectionContentActivity extends ActionBarActivity
                 getFragmentManager().beginTransaction().replace(R.id.details_frag, mExhibitionFragment).commit();
             }
         }
+
+        AnalyticsManager.sendEvent(this, R.string.catalog_category, R.string.action_section, sectionNum);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override

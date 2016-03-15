@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.ObjectsMedia;
 import ru.gkpromtech.exhibition.model.Person;
 import ru.gkpromtech.exhibition.persons.PersonDetailsActivity;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 import ru.gkpromtech.exhibition.utils.SerializablePair;
 
@@ -48,7 +51,6 @@ public class OrganizationPlaceActivity extends ActionBarActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         setTitle(R.string.title_section_organizations);
-
 
         setContentView(R.layout.activity_organization_place);
         FragmentTabHost tabHost = (FragmentTabHost) findViewById(R.id.tabHost);
@@ -139,8 +141,21 @@ public class OrganizationPlaceActivity extends ActionBarActivity
             if (mOrganization.group == null || mOrganization.group.position == null)
                 findViewById(R.id.imageShowOnSchema).setVisibility(View.GONE);
         }
+
+        AnalyticsManager.sendEvent(this, R.string.organization_place_category, R.string.action_open, mOrganization.organization.id);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+    }
 
     private View createIndicatorView(TabHost tabHost, String text) {
         View tabIndicator = getLayoutInflater().inflate(R.layout.layout_tab_passive_indicator,

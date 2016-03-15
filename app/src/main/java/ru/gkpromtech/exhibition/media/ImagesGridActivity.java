@@ -14,11 +14,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.io.Serializable;
 import java.util.List;
 
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.model.Media;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 import ru.gkpromtech.exhibition.utils.Images;
 
@@ -77,6 +80,20 @@ public class ImagesGridActivity extends Activity {
                 }
             }
         });
+
+        AnalyticsManager.sendEvent(this, R.string.media_category, R.string.action_images);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     private class ImageBaseAdapter extends BaseAdapter {

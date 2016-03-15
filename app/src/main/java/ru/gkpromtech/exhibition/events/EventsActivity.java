@@ -18,10 +18,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,12 +26,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import ru.gkpromtech.exhibition.ExhibitionApplication;
 import ru.gkpromtech.exhibition.NavigationActivity;
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.model.Event;
 import ru.gkpromtech.exhibition.model.EventFavorite;
 import ru.gkpromtech.exhibition.model.Place;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.DeviceUtils;
 
 public class EventsActivity extends NavigationActivity
@@ -45,7 +42,6 @@ public class EventsActivity extends NavigationActivity
 
     private ViewPager pager;
     private EventsFragmentPagerAdapter pagerAdapter;
-    DateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     private static int savedFilter = EventReader.EVENT_FILTER_ALL;
 
@@ -125,9 +121,12 @@ public class EventsActivity extends NavigationActivity
                         savedFilter = EventReader.EVENT_FILTER_MY;
                         break;
                 }
+                AnalyticsManager.sendEvent(EventsActivity.this, R.string.events_category, R.string.action_change, savedFilter);
                 pagerAdapter.setFilter(savedFilter);
             }
         });
+
+        AnalyticsManager.sendEvent(this, R.string.events_category, R.string.action_open, savedFilter);
     }
 
     private View createIndicatorView(TabHost tabHost, String text, int resId) {
@@ -155,7 +154,7 @@ public class EventsActivity extends NavigationActivity
     }
 
     @Override
-    public void onFavoriteChanged(int pageNumber, int eventId, int state) {
+    public void onFavoriteChanged(int pageNumber, final int eventId, int state) {
         EventReader.getInstance(this).updateFavorite(eventId, state, SQLiteDatabase.CONFLICT_REPLACE);
 
         final int eventid = eventId;
@@ -168,20 +167,13 @@ public class EventsActivity extends NavigationActivity
                 @Override
                 public void eventInserted(int calEventId) {
                     EventReader.getInstance(context).updateCalendarEvent(eventid, calEventId, SQLiteDatabase.CONFLICT_REPLACE);
-                    ExhibitionApplication.getTracker().send(new HitBuilders.EventBuilder("event", "insert")
-                            .setLabel("eventId")
-                            .setValue(eventid)
-                            .build());
-
+                    AnalyticsManager.sendEvent(EventsActivity.this, R.string.events_category, R.string.action_favorite_add, eventId);
                 }
 
                 @Override
                 public void eventRemoved(int calEventId) {
                     EventReader.getInstance(context).updateCalendarEvent(eventid, -1, SQLiteDatabase.CONFLICT_REPLACE);
-                    ExhibitionApplication.getTracker().send(new HitBuilders.EventBuilder("event", "remove")
-                            .setLabel("eventId")
-                            .setValue(eventid)
-                            .build());
+                    AnalyticsManager.sendEvent(EventsActivity.this, R.string.events_category, R.string.action_favorite_removed, eventId);
                 }
             });
 

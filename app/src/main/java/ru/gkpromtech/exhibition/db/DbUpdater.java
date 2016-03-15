@@ -95,7 +95,7 @@ public class DbUpdater {
         }
     }
 
-    private int getInstalledDbRevision() {
+    public int getInstalledDbRevision() {
         return getPrefs().getInt("installed_revision", 0);
     }
 

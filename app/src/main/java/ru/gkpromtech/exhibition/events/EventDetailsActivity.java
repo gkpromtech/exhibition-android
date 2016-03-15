@@ -15,6 +15,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import ru.gkpromtech.exhibition.model.Event;
 import ru.gkpromtech.exhibition.model.EventFavorite;
 import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.Place;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 public class EventDetailsActivity extends ActionBarActivity
         implements EventDetailsFragment.OnFragmentInteractionListener{
@@ -89,6 +92,8 @@ public class EventDetailsActivity extends ActionBarActivity
             public void onPageScrollStateChanged(int state) {
             }
         });
+
+        AnalyticsManager.sendEvent(this, R.string.event_details_category, R.string.action_open, index);
     }
 
     @Override
@@ -117,6 +122,18 @@ public class EventDetailsActivity extends ActionBarActivity
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     public class EventDetailsCollectionPagerAdapter extends FragmentStatePagerAdapter {

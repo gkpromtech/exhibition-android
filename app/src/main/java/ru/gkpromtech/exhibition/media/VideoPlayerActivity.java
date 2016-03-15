@@ -16,9 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.Online;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 
 public class VideoPlayerActivity extends ActionBarActivity implements MediaPlayer.OnCompletionListener {
@@ -131,6 +134,8 @@ public class VideoPlayerActivity extends ActionBarActivity implements MediaPlaye
         if (playOnline || playVideo) {
             startPlayVideo(videoView);
         }
+
+        AnalyticsManager.sendEvent(this, R.string.media_category, R.string.action_video);
     }
 
     @Override
@@ -143,10 +148,18 @@ public class VideoPlayerActivity extends ActionBarActivity implements MediaPlaye
         return super.onOptionsItemSelected(menuItem);
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
         mMediaController.hide();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override

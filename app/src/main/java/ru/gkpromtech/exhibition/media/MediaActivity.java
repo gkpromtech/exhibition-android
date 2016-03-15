@@ -28,6 +28,7 @@ import java.util.Date;
 
 import ru.gkpromtech.exhibition.NavigationActivity;
 import ru.gkpromtech.exhibition.R;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 public class MediaActivity extends NavigationActivity implements MediaFavoriteFragment.OnFragmentInteractionListener{
 
@@ -114,6 +115,8 @@ public class MediaActivity extends NavigationActivity implements MediaFavoriteFr
         tSpec3.setIndicator(createIndicatorView(tabHost, getResources().getString(R.string.media_tab3), R.drawable.ic_white_my_photo));
         tSpec3.setContent(new DummyTabContent(getBaseContext()));
         tabHost.addTab(tSpec3);
+
+        AnalyticsManager.sendEvent(this, R.string.media_category, R.string.action_open);
     }
 
     private View createIndicatorView(TabHost tabHost, String text, int resId) {
@@ -181,6 +184,8 @@ public class MediaActivity extends NavigationActivity implements MediaFavoriteFr
             if (fragment3 != null) {
                 fragment3.addItem(fullPath);
             }
+
+            AnalyticsManager.sendEvent(this, R.string.media_category, R.string.action_photo);
         }
     }
 

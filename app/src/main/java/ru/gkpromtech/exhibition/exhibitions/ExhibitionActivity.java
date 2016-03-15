@@ -6,10 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.model.Exhibition;
 import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.organizations.OrganizationItem;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 public class ExhibitionActivity extends ActionBarActivity {
 
@@ -35,6 +38,20 @@ public class ExhibitionActivity extends ActionBarActivity {
 
         getFragmentManager().beginTransaction().replace(R.id.fragment,
                 ExhibitionFragment.newInstance(schemaId, exhibition, startMedia, organization)).commit();
+
+        AnalyticsManager.sendEvent(this, R.string.exhibition_category, R.string.action_open, exhibition.id);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override

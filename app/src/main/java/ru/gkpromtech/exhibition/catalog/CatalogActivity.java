@@ -2,11 +2,13 @@ package ru.gkpromtech.exhibition.catalog;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 import ru.gkpromtech.exhibition.NavigationActivity;
 import ru.gkpromtech.exhibition.R;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 
 public class CatalogActivity extends NavigationActivity
@@ -15,6 +17,11 @@ public class CatalogActivity extends NavigationActivity
     @Override
     protected Fragment getFragment() {
         return SectionsFragment.newInstance();
+    }
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AnalyticsManager.sendEvent(this, R.string.catalog_category, R.string.action_open);
     }
 
     @Override

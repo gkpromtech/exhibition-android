@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import ru.gkpromtech.exhibition.about.AboutActivity;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 
 public abstract class NavigationActivity extends ActionBarActivity
@@ -52,6 +55,18 @@ public abstract class NavigationActivity extends ActionBarActivity
         }
 
         mTitle = getTitle();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     protected boolean isNavigationDrawerEnabled() {
@@ -119,6 +134,8 @@ public abstract class NavigationActivity extends ActionBarActivity
 
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
+                AnalyticsManager.sendEvent(this, R.string.application_category, R.string.action_close);
+
                 return;
             }
 

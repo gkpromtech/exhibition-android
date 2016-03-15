@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.util.List;
 
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.net.RssParser;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 
 public class NewsDetailsActivity extends ActionBarActivity {
     private List<RssParser.Item> mNewsItems;
@@ -44,6 +47,19 @@ public class NewsDetailsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+    }
+
 
     // Since this is an object collection, use a FragmentStatePagerAdapter,
     // and NOT a FragmentPagerAdapter.
@@ -74,12 +90,14 @@ public class NewsDetailsActivity extends ActionBarActivity {
 
     // Instances of this class are fragments representing a single
     // object in our collection.
-    public static class NewsDetailsObjectFragment extends Fragment {
+    private class NewsDetailsObjectFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state) {
             RssParser.Item item = (RssParser.Item) getArguments().getSerializable("item");
             WebView webView = new WebView(getActivity());
             webView.loadUrl(item.link + "&mobile=true");
+
+            AnalyticsManager.sendEvent(NewsDetailsActivity.this, R.string.news_category, R.string.action_open, item.link);
             return webView;
         }
     }

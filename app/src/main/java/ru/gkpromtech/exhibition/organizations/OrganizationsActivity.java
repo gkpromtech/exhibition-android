@@ -18,6 +18,7 @@ import java.util.List;
 import ru.gkpromtech.exhibition.NavigationActivity;
 import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.model.Place;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.DeviceUtils;
 
 public class OrganizationsActivity extends NavigationActivity
@@ -69,12 +70,14 @@ public class OrganizationsActivity extends NavigationActivity
                 case 0: { // все
                     fragment = OrganizationsPagerFragment.newInstance("",
                             OrganizationsPagerFragment.ALL, single);
+                    AnalyticsManager.sendEvent(this, R.string.organizations_category, R.string.action_open, "ALL");
                     break;
                 }
 
                 case 1: { // по стендам
                     fragment = OrganizationsPagerFragment.newInstance(getIntent().getStringExtra("id"),
                             OrganizationsPagerFragment.GROUPED, single);
+                    AnalyticsManager.sendEvent(this, R.string.organizations_category, R.string.action_open, "STAND");
                     break;
                 }
 

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -24,6 +26,7 @@ import ru.gkpromtech.exhibition.model.Entity;
 import ru.gkpromtech.exhibition.model.Organization;
 import ru.gkpromtech.exhibition.model.Person;
 import ru.gkpromtech.exhibition.organizations.OrganizationFilesDownloader;
+import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 import ru.gkpromtech.exhibition.utils.SharedData;
 
@@ -84,6 +87,20 @@ public class PersonDetailsActivity extends ActionBarActivity {
         ((GradientDrawable) findViewById(R.id.layoutPersonBk).getBackground())
                 .setGradientRadius(getResources().getDimension(
                         R.dimen.person_photo_gradient_radius));
+
+        AnalyticsManager.sendEvent(this, R.string.person_category, R.string.action_open, personId);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     private void fillTextView(TextView textView, String text) {
