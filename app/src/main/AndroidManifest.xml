@@ -100,7 +100,9 @@
             android:label="@string/media_title_online" >
         </activity>
         <activity android:name="ru.gkpromtech.exhibition.organizations.OrganizationPlaceActivity" />
-        <activity android:name="ru.gkpromtech.exhibition.exhibitions.ExhibitionActivity" />
+        <activity
+            android:name="ru.gkpromtech.exhibition.exhibitions.ExhibitionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="ru.gkpromtech.exhibition.catalog.CatalogActivity"
             android:label="@string/title_section_catalogue" >

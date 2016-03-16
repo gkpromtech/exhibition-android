@@ -184,10 +184,10 @@ public class OrganizationPlaceActivity extends ActionBarActivity
     @Override
     public void onExhibitionClicked(Exhibition exhibition, Media media) {
         Intent intent = new Intent(this, ExhibitionActivity.class);
-        intent.putExtra("schemaId", mOrganization.group.position);
-        intent.putExtra("exhibition", exhibition);
-        intent.putExtra("media", media);
-        intent.putExtra("organization", mOrganization);
+        intent.putExtra(ExhibitionActivity.SCHEMA_ID, mOrganization.group.position);
+        intent.putExtra(ExhibitionActivity.EXHIBITION, exhibition);
+        intent.putExtra(ExhibitionActivity.MEDIA, media);
+        intent.putExtra(ExhibitionActivity.ORGANIZATION, mOrganization);
         startActivity(intent);
     }
 

@@ -118,10 +118,10 @@ public class SectionContentActivity extends ActionBarActivity
         if (detailsFrag == null) {
             Intent intent = new Intent(this, ExhibitionActivity.class);
 
-            intent.putExtra("schemaId", organizationItem.group.position);
-            intent.putExtra("exhibition", exhibition);
-            intent.putExtra("media", media);
-            intent.putExtra("organization", organizationItem);
+            intent.putExtra(ExhibitionActivity.SCHEMA_ID, organizationItem.group.position);
+            intent.putExtra(ExhibitionActivity.EXHIBITION, exhibition);
+            intent.putExtra(ExhibitionActivity.MEDIA, media);
+            intent.putExtra(ExhibitionActivity.ORGANIZATION, organizationItem);
 
             startActivity(intent);
         } else {

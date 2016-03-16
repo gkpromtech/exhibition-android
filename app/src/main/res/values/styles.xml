@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="AppTheme.NoActionBar" parent="Base.AppTheme.NoActionBar">
+    </style>
+
+    <style name="Base.AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/Exhibition.White</item>
+        <item name="colorPrimaryDark">@color/Exhibition.Primary</item>
+        <item name="colorPrimary">@color/Exhibition.Primary</item>
+        <item name="colorControlHighlight">@color/Exhibition.TransparentRed</item>
+
+        <item name="android:activatedBackgroundIndicator">@drawable/main_menu_selector</item>
+        <item name="android:textViewStyle">@style/Exhibition.TextViewStyle</item>
+        <item name="android:buttonStyle">@style/Exhibition.ButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/Exhibition.ImageButtonStyle</item>
+
+        <item name="android:textAppearanceSmall">@style/Exhibition.Text.Small</item>
+        <item name="android:textAppearanceMedium">@style/Exhibition.Text.Medium</item>
+        <item name="android:textAppearanceLarge">@style/Exhibition.Text.Large</item>
+        <item name="android:listViewStyle">@style/Exhibition.ListView</item>
+    </style>
 
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/Exhibition.ActionBar</item>
