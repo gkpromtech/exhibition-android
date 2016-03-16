@@ -107,30 +107,32 @@
     <string name="description">Details</string>
     <string name="address">Address</string>
     <string name="contacts">Contacts</string>
-    <string name="about_category">About</string>
-    <string name="action_open">Open</string>
-    <string name="application_category">Application</string>
-    <string name="action_close">Close</string>
-    <string name="server_category">Server</string>
-    <string name="action_faild">Faild</string>
-    <string name="action_ok">OK</string>
-    <string name="catalog_category">Catalog</string>
-    <string name="section_category">Section</string>
-    <string name="events_category">Events</string>
-    <string name="action_section">Section</string>
-    <string name="action_change">Change</string>
-    <string name="event_details_category">EvenDetails</string>
-    <string name="exhibition_category">Exhibition</string>
-    <string name="media_category">Media</string>
-    <string name="action_photo">Photo</string>
-    <string name="action_video">Video</string>
-    <string name="action_images">Images</string>
-    <string name="news_category">News</string>
-    <string name="organizations_category">Organizations</string>
-    <string name="organization_place_category">OrganizationPlace</string>
-    <string name="person_category">Person</string>
-    <string name="action_favorite_add">Favorite Added</string>
-    <string name="action_favorite_removed">Favorite removed</string>
+
+    <!-- analytics -->
+    <string name="about_category" translatable="false">About</string>
+    <string name="action_open" translatable="false">Open</string>
+    <string name="application_category" translatable="false">Application</string>
+    <string name="action_close" translatable="false">Close</string>
+    <string name="server_category" translatable="false">Server</string>
+    <string name="action_faild" translatable="false">Failed</string>
+    <string name="action_ok" translatable="false">OK</string>
+    <string name="catalog_category" translatable="false">Catalog</string>
+    <string name="action_section" translatable="false">Section</string>
+    <string name="event_details_category" translatable="false">EventDetails</string>
+    <string name="events_category" translatable="false">Events</string>
+    <string name="action_change" translatable="false">Change</string>
+    <string name="action_favorite_add" translatable="false">FavoriteAdd</string>
+    <string name="action_favorite_removed" translatable="false">FavoriteRemove</string>
+    <string name="exhibition_category" translatable="false">Exhibition</string>
+    <string name="media_category" translatable="false">Media</string>
+    <string name="action_images" translatable="false">Images</string>
+    <string name="action_photo" translatable="false">Photo</string>
+    <string name="news_category" translatable="false">News</string>
+    <string name="organization_place_category" translatable="false">OrganizationPlace</string>
+    <string name="person_category" translatable="false">Person</string>
+    <string name="organizations_category" translatable="false">Organization</string>
+    <string name="action_video" translatable="false">Video</string>
+
     <array name="organizations_filter">
         <item>All</item>
         <item>Stands</item>
