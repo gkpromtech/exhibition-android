@@ -78,7 +78,7 @@
                         android:textAppearance="?android:attr/textAppearanceSmall" />
                 </LinearLayout>
 
-                <TextView
+                <WebView
                     android:id="@+id/textDescription"
                     android:text="Description"
                     android:layout_width="match_parent"
