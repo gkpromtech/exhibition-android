@@ -1,4 +1,4 @@
-[Русский текст](https://github.com/gkpromtech/exhibition-android/wiki)
+[Русский текст](https://github.com/primesoftpro/exhibition-android/wiki)
 
 # Online exhibition mobile app
 
@@ -54,7 +54,7 @@ Mobile apps based on this project:
 
 You have to install backend that will provide Android application with all required content.
 
-You may use your own backend or project [Exhibition-server](https://github.com/gkpromtech/exhibition-server).
+You may use your own backend or project [Exhibition-server](https://github.com/primesoftpro/exhibition-server).
 
 ### Step 2
 
@@ -112,11 +112,11 @@ To track the statistics please modify key in class ```SharedData.java```.
 
 ## License
 
-Copyright 2016 gkpromtech 
+Copyright 2016 primesoftpro
 
-https://gkpromtech.ru
+https://primesoftpro.ru
 
-info@gkptomtech.ru
+info@primesoftpro.ru
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
