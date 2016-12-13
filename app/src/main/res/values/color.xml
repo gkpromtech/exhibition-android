@@ -6,6 +6,7 @@
     <color name="Exhibition.Secondary">#6d6f71</color>
     <color name="Exhibition.Background">@android:color/white</color>
 
+    <color name="Exhibition.Red">#ed1c24</color>
     <color name="Exhibition.White">@android:color/white</color>
     <color name="Exhibition.Black">#101010</color>
 

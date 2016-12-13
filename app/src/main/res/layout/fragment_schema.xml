@@ -40,32 +40,19 @@
             android:background="@drawable/oval_button"
             android:contentDescription="@string/empty"/>
 
-        <ImageButton
-            android:id="@+id/buttonOverview"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/ic_black_map"
-            android:contentDescription="@string/empty"
-            android:scaleType="fitCenter"
-            android:onClick="onOverviewClicked"
-            android:cropToPadding="false"
-            android:background="@drawable/oval_button"
-            android:padding="6dp"
-            android:layout_marginTop="@dimen/item_spacing_small" />
-
-        <ImageButton
-            android:id="@+id/buttonPosition"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:src="@drawable/ic_target"
-            android:contentDescription="@string/empty"
-            android:scaleType="fitCenter"
-            android:onClick="onPositionClicked"
-            android:cropToPadding="false"
-            android:background="@drawable/oval_button"
-            android:padding="5dp"
-            android:layout_marginTop="@dimen/item_spacing_small" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/buttonMarkers"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/ic_black_marker"
+        android:background="@drawable/oval_button_red"
+        android:contentDescription="@string/empty"
+        android:layout_above="@+id/buttonOrganizations"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/item_spacing_large"
+        />
 
     <Button
         android:layout_width="match_parent"
@@ -74,8 +61,8 @@
         android:id="@+id/buttonOrganizations"
         android:layout_alignParentBottom="true"
         android:onClick="onOrganizationsClicked"
+        android:background="@drawable/red_button_selector"
         android:textColor="@color/Exhibition.White"
-        android:background="@drawable/primary_button_selector"
         android:drawableRight="@drawable/ic_white_arrow_right" />
 
 </RelativeLayout>

@@ -35,19 +35,23 @@ import ru.gkpromtech.exhibition.R;
 import ru.gkpromtech.exhibition.db.DbHelper;
 import ru.gkpromtech.exhibition.db.Table;
 import ru.gkpromtech.exhibition.exhibitions.ExhibitionActivity;
+import ru.gkpromtech.exhibition.media.FullImageActivity;
 import ru.gkpromtech.exhibition.model.Entity;
 import ru.gkpromtech.exhibition.model.Exhibition;
+import ru.gkpromtech.exhibition.model.MapsPoint;
 import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.ObjectsMedia;
 import ru.gkpromtech.exhibition.model.Person;
 import ru.gkpromtech.exhibition.persons.PersonDetailsActivity;
+import ru.gkpromtech.exhibition.schema.SchemaActivity;
 import ru.gkpromtech.exhibition.utils.AnalyticsManager;
 import ru.gkpromtech.exhibition.utils.ImageLoader;
 import ru.gkpromtech.exhibition.utils.SerializablePair;
 
 public class OrganizationPlaceActivity extends ActionBarActivity
         implements OrganizationExhibitionsFragment.OnExhibitionsFragmentInteractionListener,
-        OrganizationPersonsFragment.OnPersonsFragmentInteractionListener {
+        OrganizationPersonsFragment.OnPersonsFragmentInteractionListener,
+        OrganizationPlaceFragment.OrganizationPlaceFragmentListener {
 
     private final int PAGE_PLACE = 0;
     private final int PAGE_EXHIBITION = 1;
@@ -63,12 +67,11 @@ public class OrganizationPlaceActivity extends ActionBarActivity
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
 
-        setTitle(R.string.title_section_organizations);
-
         setContentView(R.layout.activity_organization_place);
         FragmentTabHost tabHost = (FragmentTabHost) findViewById(R.id.tabHost);
 
         mOrganization = (OrganizationItem) getIntent().getSerializableExtra("organization");
+        setTitle(mOrganization.organization.shortname);
 
         tabHost.setup(this, getSupportFragmentManager(), R.id.realTabContent);
 
@@ -94,7 +97,7 @@ public class OrganizationPlaceActivity extends ActionBarActivity
                     new Table.Join[]{
                             new Table.Join("objectid", Exhibition.class, "id"),
                             new Table.Join("mediaid", Media.class, "id")
-                    }, "f0.organizationid = ?", new String[] {
+                    }, "f0.organizationid = ? AND f1.type = 0", new String[] {
                             String.valueOf(mOrganization.organization.id)
                     },
                     "f1.name", "t.objectid");
@@ -144,6 +147,7 @@ public class OrganizationPlaceActivity extends ActionBarActivity
 
             TextView textName = (TextView) findViewById(R.id.textName);
             TextView textPlace = (TextView) findViewById(R.id.textPlace);
+            View imageShowOnSchema = findViewById(R.id.imageShowOnSchema);
             final ImageView imageLogo = (ImageView) findViewById(R.id.imageLogo);
 
             textName.setText(mOrganization.organization.fullname);
@@ -151,8 +155,16 @@ public class OrganizationPlaceActivity extends ActionBarActivity
 
             ImageLoader.load(mOrganization.organization.logo, imageLogo, R.drawable.no_logo);
 
-            if (mOrganization.group == null || mOrganization.group.position == null)
+            imageShowOnSchema.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onShowOnSchemaClicked(view);
+                }
+            });
+
+            if (mOrganization.place == null) {
                 findViewById(R.id.imageShowOnSchema).setVisibility(View.GONE);
+            }
         }
 
         AnalyticsManager.sendEvent(this, R.string.organization_place_category, R.string.action_open, mOrganization.organization.id);
@@ -177,6 +189,25 @@ public class OrganizationPlaceActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void onShowOnSchemaClicked(View view) {
+        Table<MapsPoint> mapsPointTable = DbHelper.getInstance(this).getTableFor(MapsPoint.class);
+
+        List<MapsPoint> mapsPoints = mapsPointTable.select("mapid is null and placename = ?",
+                new String[] { mOrganization.place.schemaid }, null, null, null);
+
+        if (mapsPoints.isEmpty()) {
+            return;
+        }
+
+        List<SchemaActivity.Marker> markers = new ArrayList<>();
+        markers.add(new SchemaActivity.Marker(mOrganization.place.schemaid,
+                mOrganization.organization.shortname));
+
+        Intent intent = new Intent(this, SchemaActivity.class);
+        intent.putExtra("markers", (Serializable) markers);
+        startActivity(intent);
+    }
+
     public void onSaveMaterialsClicked(View view) {
         OrganizationFilesDownloader.download(this, mOrganization.organization);
     }
@@ -184,7 +215,6 @@ public class OrganizationPlaceActivity extends ActionBarActivity
     @Override
     public void onExhibitionClicked(Exhibition exhibition, Media media) {
         Intent intent = new Intent(this, ExhibitionActivity.class);
-        intent.putExtra(ExhibitionActivity.SCHEMA_ID, mOrganization.group.position);
         intent.putExtra(ExhibitionActivity.EXHIBITION, exhibition);
         intent.putExtra(ExhibitionActivity.MEDIA, media);
         intent.putExtra(ExhibitionActivity.ORGANIZATION, mOrganization);
@@ -211,5 +241,13 @@ public class OrganizationPlaceActivity extends ActionBarActivity
             default:
                 return null;
         }
+    }
+
+    @Override
+    public void onPreviewImageClicked(List<Media> media, int index) {
+        Intent i = new Intent(this, FullImageActivity.class);
+        i.putExtra("items", (Serializable) media);
+        i.putExtra("index", index);
+        startActivity(i);
     }
 }

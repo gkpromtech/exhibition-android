@@ -59,12 +59,10 @@ import ru.gkpromtech.exhibition.utils.ImageLoader;
 
 public class ExhibitionActivity extends AppCompatActivity {
 
-    public static final String SCHEMA_ID = "schema_id";
     public static final String EXHIBITION = "exhibition";
     public static final String MEDIA = "media";
     public static final String ORGANIZATION = "organization";
 
-    private String mSchemaId;
     private List<Media> mMediaList = new ArrayList<>();
     private Exhibition mExhibition;
     private OrganizationItem mOrganization;
@@ -82,15 +80,6 @@ public class ExhibitionActivity extends AppCompatActivity {
 
             for (Pair<Entity[], Media> res : media)
                 mMediaList.add(res.second);
-
-            Table<Group> tableGroups = db.getTableFor(Group.class);
-            List<Group> groups = tableGroups.select("id = ?",
-                    new String[]{String.valueOf(mOrganization.place.groupid)},
-                    null, null, null);
-
-            if (groups.size() != 0) {
-                mSchemaId = groups.get(0).position;
-            }
 
             Table<Tag> tableTag = db.getTableFor(Tag.class);
             List<Pair<Entity[], Tag>> tags = tableTag.selectJoined(
@@ -189,7 +178,6 @@ public class ExhibitionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exhibition);
 
         Bundle extras = getIntent().getExtras();
-        mSchemaId = extras.getString(SCHEMA_ID);
         mExhibition = (Exhibition) extras.getSerializable(EXHIBITION);
         mStartMedia = (Media) extras.getSerializable(MEDIA);
         mOrganization = (OrganizationItem) extras.getSerializable(ORGANIZATION);

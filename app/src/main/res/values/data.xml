@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="marker_types_prefix" translatable="false">
+        <item>wc</item>
+        <item>food</item>
+        <item>souvenir</item>
+        <item>vend</item>
+        <item>mac</item>
+    </array>
+
+</resources>

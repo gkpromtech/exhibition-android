@@ -17,7 +17,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '25.0.1'
     defaultConfig {
         applicationId "ru.gkpromtech.exhibition"
         minSdkVersion 16
@@ -59,4 +59,5 @@ dependencies {
     compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     compile 'com.android.support:cardview-v7:23.2.1'
     compile 'com.google.android.gms:play-services:7.3.0'
+    compile 'com.qozix:tileview:2.2.5'
 }

@@ -83,8 +83,8 @@ public class SectionContentActivity extends ActionBarActivity
             if (firsExhibition != null) {
                 OrganizationItem organizationItem = getOrganizationItem(firsExhibition.exhibition.id,
                         firsExhibition.place);
-                mExhibitionFragment = ExhibitionFragment.newInstance(organizationItem.group.position,
-                        firsExhibition.exhibition, firsExhibition.media, organizationItem);
+                mExhibitionFragment = ExhibitionFragment.newInstance(firsExhibition.exhibition,
+                        firsExhibition.media, organizationItem);
                 getFragmentManager().beginTransaction().replace(R.id.details_frag, mExhibitionFragment).commit();
             }
         }
@@ -117,19 +117,15 @@ public class SectionContentActivity extends ActionBarActivity
 
         if (detailsFrag == null) {
             Intent intent = new Intent(this, ExhibitionActivity.class);
-
-            intent.putExtra(ExhibitionActivity.SCHEMA_ID, organizationItem.group.position);
             intent.putExtra(ExhibitionActivity.EXHIBITION, exhibition);
             intent.putExtra(ExhibitionActivity.MEDIA, media);
             intent.putExtra(ExhibitionActivity.ORGANIZATION, organizationItem);
-
             startActivity(intent);
         } else {
             if (mExhibitionFragment != null) {
                 getFragmentManager().beginTransaction().remove(mExhibitionFragment).commit();
             }
-            mExhibitionFragment = ExhibitionFragment.newInstance(organizationItem.group.position,
-                    exhibition, media, organizationItem);
+            mExhibitionFragment = ExhibitionFragment.newInstance(exhibition, media, organizationItem);
             getFragmentManager().beginTransaction().replace(R.id.details_frag,
                     mExhibitionFragment).commit();
         }
@@ -144,16 +140,14 @@ public class SectionContentActivity extends ActionBarActivity
             List<Pair<Entity[], Exhibition>> exhibitions = exhibitionTable.selectJoined(
                     new Table.Join[]{
                             new Table.Join("organizationid", Organization.class, "id"),
-                            new Table.Join("placeid", Place.class, "id"),
-                            new Table.Join(Group.class, "f1.groupid = f2.id"),
+                            new Table.Join("placeid", Place.class, "id")
                     },
                     "t.id = ?", new String[]{String.valueOf(exhibitionId)}, null, null
             );
 
             if (!exhibitions.isEmpty()) {
                 Organization org = (Organization) exhibitions.get(0).first[0];
-                Group group = (Group) exhibitions.get(0).first[2];
-                organizationItem = new OrganizationItem(group, place, org);
+                organizationItem = new OrganizationItem(place, org);
             }
         }
         catch (Exception e) {

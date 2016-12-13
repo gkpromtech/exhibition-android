@@ -101,6 +101,9 @@
         </activity>
         <activity android:name="ru.gkpromtech.exhibition.organizations.OrganizationPlaceActivity" />
         <activity
+            android:name=".organizations.OrganizationDetailActivity"
+            android:label="@string/organization1"/>
+        <activity
             android:name="ru.gkpromtech.exhibition.exhibitions.ExhibitionActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
@@ -113,7 +116,9 @@
             android:parentActivityName="ru.gkpromtech.exhibition.catalog.CatalogActivity" >
         </activity>
         <activity android:name="ru.gkpromtech.exhibition.persons.PersonDetailsActivity" />
-
+        <activity
+            android:name=".schema.SchemaActivity"
+            android:label="@string/title_section_map"/>
 
         <!-- Add the following meta-data for devices running Google Play service. -->
         <meta-data

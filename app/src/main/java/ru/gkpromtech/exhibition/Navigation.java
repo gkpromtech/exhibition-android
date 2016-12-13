@@ -21,6 +21,7 @@ import ru.gkpromtech.exhibition.events.EventsActivity;
 import ru.gkpromtech.exhibition.media.MediaActivity;
 import ru.gkpromtech.exhibition.news.NewsActivity;
 import ru.gkpromtech.exhibition.organizations.OrganizationsActivity;
+import ru.gkpromtech.exhibition.schema.SchemaActivity;
 
 public class Navigation {
 
@@ -44,6 +45,7 @@ public class Navigation {
 
     public final static Item[] ITEMS = new Item[] {
             new Item(R.string.title_section_now, EventsActivity.class),
+            new Item(R.string.title_section_map, SchemaActivity.class),
             new Item(R.string.title_section_organizations, OrganizationsActivity.class),
             new Item(R.string.title_section_catalogue, CatalogActivity.class),
             new Item(R.string.title_section_news, NewsActivity.class),

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Exhibition Online</string>
 
     <string name="yes">Yes</string>
@@ -133,9 +134,14 @@
     <string name="organizations_category" translatable="false">Organization</string>
     <string name="action_video" translatable="false">Video</string>
 
-    <array name="organizations_filter">
-        <item>All</item>
-        <item>Stands</item>
+    <array name="marker_types">
+        <item>WC</item>
+        <item>Food</item>
+        <item>Souvenirs</item>
+        <item>Vending</item>
+        <item>Mother-and-child room</item>
     </array>
+
+    <string name="show">Show</string>
 
 </resources>

@@ -30,6 +30,7 @@
         android:paddingBottom="@dimen/item_spacing"
         android:paddingLeft="@dimen/item_spacing_large"
         android:paddingRight="@dimen/item_spacing_large"
-        android:shadowRadius="4" />
+        android:shadowRadius="4"
+        android:id="@+id/progressText"/>
 
 </RelativeLayout>

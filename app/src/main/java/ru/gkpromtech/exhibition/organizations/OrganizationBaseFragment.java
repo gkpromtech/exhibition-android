@@ -64,8 +64,9 @@ public abstract class OrganizationBaseFragment extends Fragment {
         String logo = mOrganization.organization.logo;
         ImageLoader.load(logo, imageLogo, R.drawable.no_logo);
 
-        if (mOrganization.group == null || mOrganization.group.position == null)
+        if (mOrganization.place == null) {
             v.findViewById(R.id.imageShowOnSchema).setVisibility(View.GONE);
+        }
     }
 
 }

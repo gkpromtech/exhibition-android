@@ -22,12 +22,10 @@ import ru.gkpromtech.exhibition.model.Organization;
 import ru.gkpromtech.exhibition.model.Place;
 
 public class OrganizationItem implements Serializable {
-    public Group group;
     public Place place;
     public Organization organization;
 
-    public OrganizationItem(Group group, Place place, Organization organization) {
-        this.group = group;
+    public OrganizationItem(Place place, Organization organization) {
         this.place = place;
         this.organization = organization;
     }

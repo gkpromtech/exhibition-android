@@ -45,6 +45,7 @@ import ru.gkpromtech.exhibition.model.EventsPlace;
 import ru.gkpromtech.exhibition.model.Exhibition;
 import ru.gkpromtech.exhibition.model.Group;
 import ru.gkpromtech.exhibition.model.GroupsPlace;
+import ru.gkpromtech.exhibition.model.MapsPoint;
 import ru.gkpromtech.exhibition.model.Media;
 import ru.gkpromtech.exhibition.model.MediaFavorite;
 import ru.gkpromtech.exhibition.model.ObjectsMedia;
@@ -116,7 +117,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 ObjectsMedia.class,
                 EventFavorite.class,
                 Online.class,
-                MediaFavorite.class
+                MediaFavorite.class,
+                MapsPoint.class
         };
 
         try {

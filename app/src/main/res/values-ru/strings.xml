@@ -97,8 +97,15 @@
     <string name="filter">Фильтр</string>
     <string name="cannot_determine_location">Невозможно определить свое местоположение</string>
     <string name="description">Информация</string>
-    <array name="organizations_filter">
-        <item>Все</item>
-        <item>Стенды</item>
+
+    <array name="marker_types">
+        <item>Туалеты</item>
+        <item>Питание</item>
+        <item>Сувениры</item>
+        <item>Вендинг</item>
+        <item>Комнаты матери и дитя</item>
     </array>
+
+    <string name="show">Показать</string>
+
 </resources>

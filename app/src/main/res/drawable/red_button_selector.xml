@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/Exhibition.Red" android:state_pressed="true" />
+    <item android:state_activated="true">
+        <color android:color="@color/Exhibition.Red"/>
+    </item>
+    <item android:drawable="@drawable/background_red"/>
+</selector>

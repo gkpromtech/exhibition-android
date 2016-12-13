@@ -55,24 +55,21 @@ import ru.gkpromtech.exhibition.utils.ImageLoader;
 
 public class ExhibitionFragment extends Fragment {
 
-    private static final String SCHEMA_ID = "schema_id";
     private static final String EXHIBITION = "exhibition";
     private static final String MEDIA = "media";
     private static final String ORGANIZATION = "organization";
 
-    private String mSchemaId;
     private List<Media> mMediaList = new ArrayList<>();
     private Exhibition mExhibition;
     private OrganizationItem mOrganization;
     private Media mStartMedia;
     private StringBuilder mStringTags;
 
-    public static ExhibitionFragment newInstance(String schemaId, Exhibition exhibition,
-                                                 Media startMedia, OrganizationItem organization) {
+    public static ExhibitionFragment newInstance(Exhibition exhibition, Media startMedia,
+                                                 OrganizationItem organization) {
         ExhibitionFragment fragment = new ExhibitionFragment();
         Bundle args = new Bundle();
 
-        args.putString(SCHEMA_ID, schemaId);
         args.putSerializable(EXHIBITION, exhibition);
         args.putSerializable(MEDIA, startMedia);
         args.putSerializable(ORGANIZATION, organization);
@@ -89,7 +86,6 @@ public class ExhibitionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mSchemaId = getArguments().getString(SCHEMA_ID);
             mStartMedia = (Media) getArguments().getSerializable(MEDIA);
             mExhibition = (Exhibition) getArguments().getSerializable(EXHIBITION);
             mOrganization = (OrganizationItem) getArguments().getSerializable(ORGANIZATION);
@@ -103,15 +99,6 @@ public class ExhibitionFragment extends Fragment {
 
                 for (Pair<Entity[], Media> res : media)
                     mMediaList.add(res.second);
-
-                Table<Group> tableGroups = db.getTableFor(Group.class);
-                List<Group> groups = tableGroups.select("id = ?",
-                        new String[]{String.valueOf(mOrganization.place.groupid)},
-                        null, null, null);
-
-                if (groups.size() != 0) {
-                    mSchemaId = groups.get(0).position;
-                }
 
                 Table<Tag> tableTag = db.getTableFor(Tag.class);
                 List<Pair<Entity[], Tag>> tags = tableTag.selectJoined(
