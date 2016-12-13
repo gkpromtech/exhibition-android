@@ -12,6 +12,7 @@ Key features:
 
 - events & details
 - organizations catalog
+- map
 - delegates / persons
 - exhibition samples & details
 - categories
@@ -47,6 +48,7 @@ Mobile apps based on this project:
 - appcompat-v7
 - support-v13
 - [horizontallistview](https://github.com/sephiroth74/HorizontalVariableListView)
+- [TileView 2.2.5](https://github.com/moagrius/TileView)
 
 ## How to use
 
